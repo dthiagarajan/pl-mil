@@ -38,7 +38,6 @@ class MILImageDataset(torch.utils.data.Dataset):
     def __getitem__(self, index: int):
         row = self.dataset.loc[index]
         image_fp, coord = row.image_fp, row.coord
-        # TODO: optimize here with a LRU-cache
         image = read_image(image_fp)
         if self.transform:
             image = self.transform(image)
