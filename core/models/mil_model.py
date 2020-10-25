@@ -22,7 +22,6 @@ class MILModel(LightningModule):
 
     def training_step(self, batch, batch_idx):
         index, image, label = batch
-        # Log images here
         if batch_idx == 0:
             self.logger.experiment.add_images(
                 'Top-K Images', image, global_step=self.training_log_step

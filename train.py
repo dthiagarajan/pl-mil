@@ -1,5 +1,6 @@
 from pytorch_lightning import seed_everything, Trainer
 
+from core.callbacks import ProgressBar
 from core.data.data_module import PCAMDataModule
 from core.models.mil_model import MILModel
 from core.models.simple_cnn import SimpleCNN
@@ -25,7 +26,7 @@ if __name__ == '__main__':
 
     model = SimpleCNN()
     clf = MILModel(model)
-    trainer = Trainer(reload_dataloaders_every_epoch=True)
+    trainer = Trainer(reload_dataloaders_every_epoch=True, callbacks=[ProgressBar()])
 
     all_training_metrics = []
     for epoch in range(5):
